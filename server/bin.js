@@ -13,11 +13,14 @@ var express = require('express'),
     .use(serveStatic(path.join(__dirname, '../.tmp'), STATIC_OPTIONS))
     .use(serveStatic(path.join(__dirname, '../app'), STATIC_OPTIONS));
 
+var address, _ = require("os").networkInterfaces()
+var local = process.env.NODE_ENV == "local"
+
 var server = http.createServer(api);
 socket(server);
 var port = process.env.PORT || 9000;
 
-server.listen(port).on('error', function (e) {
+server.listen(port, local ? address : "192.168.29.90").on('error', function (e) {
   if (e.code !== 'EADDRINUSE' && e.code !== 'EACCES') {
     throw e;
   }

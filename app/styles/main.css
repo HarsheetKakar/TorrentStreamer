@@ -4,6 +4,11 @@ body {
   padding-bottom: 20px;
 }
 
+.player{
+  width: 100%;
+  height:10em;
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .content,

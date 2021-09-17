@@ -10,10 +10,20 @@ angular.module('peerflixServerApp')
 
     $scope.torrentList = []
 
+    var playFile = [];
+
     function load() {
       var torrents = Torrent.query(function () {
         $scope.torrents = torrents.reverse();
       });
+    }
+
+    $scope.addToPlayer = (file) => {
+      playFile.push(file.link)
+    }
+
+    $scope.playerFileCheck = () => {
+      return true
     }
 
     $scope.downloadSearchItem = (torrent) => {
@@ -98,6 +108,7 @@ angular.module('peerflixServerApp')
     };
 
     $scope.select = function (torrent, file) {
+      file.clicked = true
       torrentSocket.emit(file.selected ? 'deselect' : 'select', torrent.infoHash, torrent.files.indexOf(file));
     };
 

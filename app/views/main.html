@@ -17,10 +17,24 @@
       <input type="text" class="form-control" placeholder="Search Here" ng-model="searchItem">
     </div>
   </div>
-
   <a class="btn btn-success" href="" ng-click="getSearchItem()">
     <span class=""></span>
     Search
+  </a>
+
+  <br>
+  <br>
+
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon">Watch:</span>
+      <input type="text" class="form-control" placeholder="Search Here" ng-model="link">
+    </div>
+  </div>
+
+  <a class="btn btn-success" href="" ng-click="download()">
+    <span class=""></span>
+    Download
   </a>
 
 
@@ -73,7 +87,7 @@
         <li class="list-group-item text-nowrap" ng-repeat="file in torrent.files">
           <input type="checkbox" ng-model="file.selected" ng-click="select(torrent, file)" />
           <span class="fa fa-cloud-download"></span>
-          <a ng-href="{{ file.link }}" target="_blank">
+          <a target="_blank" ng-click="addToPlayer(file)" href="{{file.link}}">
             {{ file.name }} ({{ file.length / 1024 / 1024 | number:1 }} MB)
           </a>
         </li>

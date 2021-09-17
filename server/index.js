@@ -24,6 +24,7 @@ api.use(function (req, res, next) {
 });
 
 let TorrentSearchApi = require('torrent-search-api');
+TorrentSearchApi.enableProvider('1337x');
 
 function serialize(torrent) {
   if (!torrent.torrent) {
@@ -81,7 +82,6 @@ api.post('/torrents', function (req, res) {
 });
 
 api.get('/search', async function (req, res) {
-  TorrentSearchApi.enableProvider('1337x');
   let searchItem = req.query.searchItem;
   console.log("????????????????????????????????????????????????" + searchItem)
   let category = "All"
